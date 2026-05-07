@@ -1,0 +1,149 @@
+fields:
+  - name: sourceAppID
+    type: string
+    required: false
+    description: "Application identifier for the source system"
+  - name: sourceDataSourceName
+    type: string
+    required: false
+    description: "Name of the source data source (DB name, API name, file path) as referenced in code"
+  - name: sourceTechnologyType
+    type: string
+    required: true
+    description: "Technology type: PostgreSQL, MySQL, REST API, Kafka, CSV, etc."
+  - name: sourceSchemaType
+    type: string
+    required: false
+    description: "Schema type: database, api, file, message_queue"
+  - name: sourceSchemaName
+    type: string
+    required: false
+    description: "Schema name (DB schema, API path prefix)"
+  - name: sourceEntityType
+    type: string
+    required: false
+    description: "Entity type: table, view, endpoint, topic, file"
+  - name: sourceEntityName
+    type: string
+    required: true
+    description: "Entity name: table name, endpoint path, topic name"
+  - name: sourceColumnDataType
+    type: string
+    required: false
+    description: "Data type of the source column"
+  - name: sourceColumnName
+    type: string
+    required: false
+    description: "Column or field name in the source"
+  - name: targetAppID
+    type: string
+    required: false
+    description: "Application identifier for the target system"
+  - name: targetDataTargetName
+    type: string
+    required: false
+    description: "Name of the target data destination as referenced in code"
+  - name: targetTechnologyType
+    type: string
+    required: true
+    description: "Technology type of the target"
+  - name: targetSchemaType
+    type: string
+    required: false
+    description: "Schema type of the target"
+  - name: targetSchemaName
+    type: string
+    required: false
+    description: "Schema name of the target"
+  - name: targetEntityType
+    type: string
+    required: false
+    description: "Entity type of the target"
+  - name: targetEntityName
+    type: string
+    required: true
+    description: "Entity name of the target"
+  - name: targetColumnDataType
+    type: string
+    required: false
+    description: "Data type of the target column"
+  - name: targetColumnName
+    type: string
+    required: false
+    description: "Column or field name in the target"
+  - name: dataOperationDate
+    type: string
+    required: false
+    description: "ISO date when lineage was extracted"
+  - name: dataOperationType
+    type: string
+    required: false
+    description: "READ, WRITE, TRANSFORM, COPY, JOIN, FILTER, AGGREGATE"
+  - name: dataOperationName
+    type: string
+    required: false
+    description: "Function/method name performing the operation"
+  - name: dataOperationDescription
+    type: string
+    required: false
+    description: "Human-readable description of the data operation"
+  - name: dataOperationEvidence
+    type: array
+    required: true
+    description: "Ordered list of evidence steps showing every transformation from source to target"
+  - name: confidence
+    type: string
+    required: false
+    description: "Verification confidence level: HIGH (parser-confirmed), MEDIUM (cross-validated), LOW (agent-only)"
+
+language_overrides:
+  python:
+    extra_fields:
+      - name: sourcePandasOperation
+        type: string
+        required: false
+        description: "Pandas method if applicable (read_csv, merge, groupby)"
+      - name: sourceORMModel
+        type: string
+        required: false
+        description: "SQLAlchemy/Django model class name"
+  java:
+    extra_fields:
+      - name: sourceJDBCDriver
+        type: string
+        required: false
+        description: "JDBC driver class or connection pool name"
+      - name: sourceSpringRepository
+        type: string
+        required: false
+        description: "Spring Data repository interface name"
+      - name: sourceJPAEntity
+        type: string
+        required: false
+        description: "JPA entity class name"
+  cobol_aps:
+    extra_fields:
+      - name: sourceVSAMFile
+        type: string
+        required: false
+        description: "VSAM file logical name (from SELECT statement)"
+      - name: sourceRecordName
+        type: string
+        required: false
+        description: "Record definition name (01 level)"
+      - name: sourceCopybook
+        type: string
+        required: false
+        description: "Copybook name defining the source record layout"
+      - name: targetVSAMFile
+        type: string
+        required: false
+        description: "VSAM file logical name for target"
+      - name: targetRecordName
+        type: string
+        required: false
+        description: "Target record definition name"
+      - name: calledSubprogram
+        type: string
+        required: false
+        description: "Subprogram name if data is passed via CALL USING"

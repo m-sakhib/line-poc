@@ -1,0 +1,15 @@
+[project]
+name = "lineage-poc"
+version = "0.1.0"
+description = "Data lineage tracker using GitHub Copilot SDK with Azure Foundry BYOK"
+requires-python = ">=3.11"
+dependencies = [
+    "github-copilot-sdk>=0.3.0",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "javalang>=0.13.0",
+    "pandas>=2.0",
+]
+
+[project.scripts]
+lineage = "lineage_poc.main:cli"
